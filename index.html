@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard Daerah Seberang Perai Tengah</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="crest">SPT</div>
+      <div>
+        <b>Seberang Perai Tengah</b>
+        <span>Local Intelligence Dashboard</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#ringkasan">Ringkasan</a>
+      <a href="#demografi">Demografi</a>
+      <a href="#ekonomi">Ekonomi</a>
+      <a href="#dun">DUN & P.045</a>
+      <a href="#sosial">Sosial</a>
+      <a href="#map">Peta</a>
+      <a href="#sumber">Sumber</a>
+    </nav>
+    <div class="side-note">
+      <strong>Nota geografi</strong>
+      <p>Bukit Mertajam bukan daerah pentadbiran. Dashboard ini menggunakan Daerah Seberang Perai Tengah sebagai geografi utama, dan P.045 Bukit Mertajam sebagai fokus kawasan.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="tag">DOSM-style web upgrade</div>
+        <h1>Dashboard Daerah Seberang Perai Tengah</h1>
+        <p>Fokus Bukit Mertajam: profil demografi, ekonomi, sosial, kemudahan awam dan peta interaktif untuk naratif pembangunan setempat.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#ringkasan">Lihat dashboard</a>
+          <a class="btn ghost" href="#sumber">Semak sumber</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <span>Geografi utama</span>
+        <strong>Daerah Seberang Perai Tengah</strong>
+        <small>Pentadbiran: Pulau Pinang · PBT: Majlis Bandaraya Seberang Perai</small>
+      </div>
+    </header>
+
+    <section class="method-card">
+      <h2>Perubahan utama daripada dashboard asal</h2>
+      <div class="method-grid">
+        <div><b>1. Geografi utama ditukar</b><p>Daripada “Bukit Mertajam” sebagai daerah kepada “Daerah Seberang Perai Tengah”.</p></div>
+        <div><b>2. Bukit Mertajam sebagai fokus</b><p>P.045 Bukit Mertajam dan DUN Berapit, Machang Bubuk, Padang Lalang digunakan untuk cerita lokal.</p></div>
+        <div><b>3. Sumber & masa rujukan</b><p>Setiap seksyen mempunyai label sumber dan tahun rujukan supaya analisis lebih defensible.</p></div>
+      </div>
+    </section>
+
+    <section id="ringkasan" class="section">
+      <div class="section-title">
+        <span>01</span><div><h2>Ringkasan Utama</h2><p>Indikator utama pada peringkat daerah pentadbiran.</p></div>
+      </div>
+      <div class="kpi-grid">
+        <article class="kpi"><small>Penduduk</small><strong id="kpiPopulation">Memuat data...</strong><span>Daerah SPT, anggaran semasa</span></article>
+        <article class="kpi"><small>Keluasan</small><strong>237.8 km²</strong><span>Daerah Seberang Perai Tengah</span></article>
+        <article class="kpi"><small>Kepadatan</small><strong id="kpiDensity">±1,895 / km²</strong><span>Rujukan DOSM 2025</span></article>
+        <article class="kpi"><small>Fokus kawasan</small><strong>P.045 BM</strong><span>Berapit, Machang Bubuk, Padang Lalang</span></article>
+      </div>
+      <div class="insight blue">
+        <b>Insight:</b> Menjadikan SPT sebagai geografi utama membolehkan dashboard menggunakan MyLocal Stats, KDNK daerah, kemudahan awam dan indikator pentadbiran secara lebih tepat. Bukit Mertajam kekal sebagai naratif fokus kerana ia merupakan kawasan bandar penting dalam SPT.
+      </div>
+    </section>
+
+    <section id="demografi" class="section two-col">
+      <div>
+        <div class="section-title"><span>02</span><div><h2>Demografi SPT</h2><p>Data populasi daerah dipautkan kepada OpenDOSM/data.gov.my.</p></div></div>
+        <div class="chart-card"><canvas id="ageChart"></canvas></div>
+      </div>
+      <div class="story-card">
+        <h3>Naratif demografi</h3>
+        <p>Daerah Seberang Perai Tengah adalah kawasan bandar-perindustrian dengan kepadatan penduduk yang tinggi berbanding banyak daerah lain di Malaysia. Untuk analisis terperinci Bukit Mertajam, gunakan P.045 Bukit Mertajam dan tiga DUN sebagai lapisan subkawasan.</p>
+        <ul>
+          <li>Data daerah: sesuai untuk perancangan kemudahan, KDNK, MyLocal Stats dan pentadbiran.</li>
+          <li>Data P.045: sesuai untuk profil komuniti Bukit Mertajam.</li>
+          <li>Data DUN: sesuai untuk perbandingan mikro kawasan.</li>
+        </ul>
+        <div class="source-pill">Sumber: OpenDOSM Population Table: Administrative Districts, data set hingga 2024</div>
+      </div>
+    </section>
+
+    <section id="ekonomi" class="section">
+      <div class="section-title"><span>03</span><div><h2>Ekonomi & Peranan Daerah</h2><p>Analisis menggunakan peringkat SPT kerana indikator ekonomi lazimnya tersedia pada daerah.</p></div></div>
+      <div class="economy-grid">
+        <article class="analysis-card"><h3>Struktur ekonomi</h3><p>SPT sesuai dianalisis sebagai daerah ekonomi kerana merangkumi kawasan perindustrian, perkhidmatan bandar, perdagangan borong & runcit, logistik dan perumahan matang.</p></article>
+        <article class="analysis-card"><h3>Penunjuk yang disaran</h3><p>KDNK daerah, pendapatan isi rumah, tenaga buruh, pertubuhan perniagaan, harga pengguna, transaksi harta dan lesen perniagaan MBSP.</p></article>
+        <article class="analysis-card"><h3>Hubungan dengan BM</h3><p>Bukit Mertajam boleh diposisikan sebagai pusat komuniti dan aktiviti perkhidmatan dalam ekosistem ekonomi SPT.</p></article>
+      </div>
+    </section>
+
+    <section id="dun" class="section">
+      <div class="section-title"><span>04</span><div><h2>Fokus Bukit Mertajam & DUN</h2><p>Subkawasan untuk memperincikan cerita P.045 Bukit Mertajam.</p></div></div>
+      <div class="dun-grid">
+        <div class="dun-card berapit"><b>N.13 Berapit</b><p>Kawasan berhampiran bandar Bukit Mertajam, Alma dan Permatang Tinggi. Sesuai untuk analisis perumahan, peruncitan dan akses bandar.</p></div>
+        <div class="dun-card machang"><b>N.14 Machang Bubuk</b><p>Kawasan pembangunan perumahan dan komuniti yang berkembang. Sesuai untuk analisis kemudahan awam dan mobiliti harian.</p></div>
+        <div class="dun-card padang"><b>N.15 Padang Lalang</b><p>Kawasan yang menyokong fungsi bandar Bukit Mertajam. Sesuai untuk analisis kemudahan, sosial dan ekonomi setempat.</p></div>
+      </div>
+      <div class="chart-card"><canvas id="dunChart"></canvas></div>
+    </section>
+
+    <section id="sosial" class="section two-col">
+      <div>
+        <div class="section-title"><span>05</span><div><h2>Sosial & Kemudahan Awam</h2><p>Gunakan daerah SPT untuk MyLocal Stats dan data pentadbiran.</p></div></div>
+        <div class="facility-grid">
+          <div><b>Pendidikan</b><span>Sekolah, murid, guru, institusi latihan</span></div>
+          <div><b>Kesihatan</b><span>Hospital, klinik, kes denggi, capaian perkhidmatan</span></div>
+          <div><b>Keselamatan</b><span>Balai polis, kes jenayah, kemalangan jalan raya</span></div>
+          <div><b>Kebajikan</b><span>JKM, eKasih, STR, OKU, warga emas</span></div>
+          <div><b>Infrastruktur</b><span>Jalan, air, pembetungan, pengangkutan</span></div>
+          <div><b>Komuniti</b><span>Masjid, surau, dewan, rekreasi, perpustakaan</span></div>
+        </div>
+      </div>
+      <div class="story-card">
+        <h3>Kaedah penggunaan data sosial</h3>
+        <p>Jika angka tidak tersedia untuk Bukit Mertajam secara langsung, gunakan SPT sebagai proksi rasmi. Jangan campurkan angka daerah dengan Parlimen tanpa label.</p>
+        <div class="warning">Label wajib: Geografi, sumber, tahun rujukan dan status data.</div>
+      </div>
+    </section>
+
+    <section id="map" class="section">
+      <div class="section-title"><span>06</span><div><h2>Peta Interaktif</h2><p>Lapisan awal untuk lokasi fokus, DUN dan tanda tempat.</p></div></div>
+      <div class="map-layout">
+        <div id="mapBox"></div>
+        <div class="map-panel">
+          <h3>Layer tersedia</h3>
+          <p>Pin lokasi ini bersifat permulaan. Tambah koordinat sebenar untuk sekolah, klinik, balai polis, bomba, masjid dan tanda tempat daripada data pentadbiran.</p>
+          <div class="legend"><span class="dot town"></span>Bukit Mertajam town centre</div>
+          <div class="legend"><span class="dot nature"></span>Bukit Mertajam Recreational Forest</div>
+          <div class="legend"><span class="dot heritage"></span>St. Anne's Church</div>
+          <div class="legend"><span class="dot infra"></span>Mengkuang Dam / rekreasi</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sumber" class="section">
+      <div class="section-title"><span>07</span><div><h2>Sumber & Masa Rujukan</h2><p>Jadual ini penting untuk defend dashboard semasa pembentangan.</p></div></div>
+      <table class="source-table">
+        <thead><tr><th>Indikator</th><th>Geografi</th><th>Sumber</th><th>Masa rujukan</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Populasi daerah</td><td>Seberang Perai Tengah</td><td>OpenDOSM / data.gov.my population_district</td><td>2020–2024</td><td>Live-ready</td></tr>
+          <tr><td>Kepadatan penduduk</td><td>Daerah pentadbiran</td><td>DOSM Current Population Estimates</td><td>2024/2025</td><td>Rujukan rasmi</td></tr>
+          <tr><td>MyLocal Stats</td><td>Seberang Perai Tengah</td><td>DOSM MyLocal Stats</td><td>Mengikut indikator</td><td>Manual/API jika tersedia</td></tr>
+          <tr><td>P.045 Bukit Mertajam</td><td>Parlimen + DUN</td><td>OpenDOSM Kawasanku / Statistik Subnasional</td><td>MyCensus 2020 dan kemas kini berkaitan</td><td>Fokus kawasan</td></tr>
+          <tr><td>Kemudahan awam</td><td>Daerah / mukim / DUN</td><td>MyLocal Stats & data pentadbiran agensi</td><td>Mengikut agensi</td><td>Perlu label jelas</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <b>Nota:</b> Dashboard ini telah distruktur semula supaya konsisten dengan geografi pentadbiran. Bukit Mertajam dikekalkan sebagai fokus lokal, bukan sebagai daerah pentadbiran.
+    </footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
